@@ -365,7 +365,12 @@ function CLevel(iLevel){
         _aCellLabelFruit[15] = 'orange';
         _aCellLabelFruit[16] = 'grapes';
         _aCellLabelFruit[17] = 'strawberry';
-        
+        _aCellLabelFruit[18] = 'candycane';
+        _aCellLabelFruit[19] = 'fries';
+        _aCellLabelFruit[20] = 'lollipop';
+        _aCellLabelFruit[21] = 'pizza';
+        _aCellLabelFruit[22] = 'burger';
+        _aCellLabelFruit[23] = 'medicine';
     };
     
     this.getLevel = function(iLevel){

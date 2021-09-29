@@ -37,6 +37,12 @@ function CGame(mode, level,oData){
     var _oGrapes = {x: 0, y: 0};
     var _oOrange = {x: 0, y: 0};
     var _oStrawberry = {x: 0, y: 0};
+    var _oCandyCane = {x: 0, y: 0};
+    var _oFries = {x: 0, y: 0};
+    var _oLollipop = {x: 0, y: 0};
+    var _oPizza = {x: 0, y: 0};
+    var _oBurger = {x: 0, y: 0};
+    var _oMedicine = {x: 0, y: 0};
     
     var _oContainerGrid;
     var _oInterface;
@@ -72,6 +78,12 @@ function CGame(mode, level,oData){
         CARROTS_ON = false;
         EGGPLANT_ON = false;
         TOMATO_ON = false;
+        CANDYCANE_ON = false;
+        FRIES_ON = false;
+        LOLLIPOP_ON = false;
+        PIZZA_ON = false;
+        BURGER_ON = false;
+        MEDICINE_ON = false;
 		
         if(!s_bMobile){
             document.onkeydown = onKeyDown; 
@@ -147,6 +159,12 @@ function CGame(mode, level,oData){
         CARROTS_ON = false;
         EGGPLANT_ON = false;
         TOMATO_ON = false;
+        CANDYCANE_ON = false;
+        FRIES_ON = false;
+        LOLLIPOP_ON = false;
+        PIZZA_ON = false;
+        BURGER_ON = false;
+        MEDICINE_ON = false;
         
         
         s_oLevelSetting = new CLevel(_iLevel);
@@ -361,7 +379,19 @@ function CGame(mode, level,oData){
             this.fruitEaten( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() );
         }else if( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() === 'strawberry'){     //HITTED STRAWBERRY
             this.fruitEaten( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() );
-        }else if(_aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() !== 'background'){  //HITTED MYSELF OR A WALL
+        }else if( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() === 'candycane'){     //HITTED CANDYCANE
+            this.fruitEaten( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() );
+        }else if( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() === 'fries'){     //HITTED FRIES
+            this.fruitEaten( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() );
+        }else if( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() === 'lollipop'){     //HITTED LOLLIPOP
+        }else if( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() === 'pizza'){     //HITTED PIZZA
+            this.fruitEaten( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() );
+        }else if( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() === 'burger'){     //HITTED BURGER
+            this.fruitEaten( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() );
+        }else if( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() === 'medicine'){     //HITTED MEDICIEN
+            this.fruitEaten( _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() );
+        }
+        else if(_aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue() !== 'background'){  //HITTED MYSELF OR A WALL
             _bUpdate = false;
             _bDead=true;
             this.gameOver();
@@ -383,22 +413,22 @@ function CGame(mode, level,oData){
     this.anyFruit = function (irow, icol){
         
         if( (irow+1) < NUM_ROWS ){
-            if(_aGrid[irow+1][icol].getValue() === 'apple' || _aGrid[irow+1][icol].getValue() === 'cherry' || _aGrid[irow+1][icol].getValue() === 'pear' || _aGrid[irow+1][icol].getValue() === 'grapes' || _aGrid[irow+1][icol].getValue() === 'orange' || _aGrid[irow+1][icol].getValue() === 'strawberry') {
+            if(_aGrid[irow+1][icol].getValue() === 'apple' || _aGrid[irow+1][icol].getValue() === 'cherry' || _aGrid[irow+1][icol].getValue() === 'pear' || _aGrid[irow+1][icol].getValue() === 'grapes' || _aGrid[irow+1][icol].getValue() === 'orange' || _aGrid[irow+1][icol].getValue() === 'strawberry' || _aGrid[irow+1][icol].getValue() === 'candycane' || _aGrid[irow+1][icol].getValue() === 'fries' || _aGrid[irow+1][icol].getValue() === 'lollipop' || _aGrid[irow+1][icol].getValue() === 'pizza' || _aGrid[irow+1][icol].getValue() === 'burger' || _aGrid[irow+1][icol].getValue() === 'medicine') {
                 _aGrid[irow][icol].changeCellState(_iPrecDir, _aSnake[_iHead].dir, 'mouth_opened');
             }
         }
         if( (icol+1) < NUM_COLS ){
-            if(_aGrid[irow][icol+1].getValue() === 'apple' || _aGrid[irow][icol+1].getValue() === 'cherry' || _aGrid[irow][icol+1].getValue() === 'pear' || _aGrid[irow][icol+1].getValue() === 'grapes' || _aGrid[irow][icol+1].getValue() === 'orange' || _aGrid[irow][icol+1].getValue() === 'strawberry') {
+            if(_aGrid[irow][icol+1].getValue() === 'apple' || _aGrid[irow][icol+1].getValue() === 'cherry' || _aGrid[irow][icol+1].getValue() === 'pear' || _aGrid[irow][icol+1].getValue() === 'grapes' || _aGrid[irow][icol+1].getValue() === 'orange' || _aGrid[irow][icol+1].getValue() === 'strawberry' || _aGrid[irow][icol+1].getValue() === 'candycane' || _aGrid[irow][icol+1].getValue() === 'fries' || _aGrid[irow][icol+1].getValue() === 'lollipop' || _aGrid[irow][icol+1].getValue() === 'pizza' || _aGrid[irow][icol+1].getValue() === 'burger' || _aGrid[irow][icol+1].getValue() === 'medicine') {
                 _aGrid[irow][icol].changeCellState(_iPrecDir, _aSnake[_iHead].dir, 'mouth_opened');
             }
         }
         if( (irow-1) >= 0 ){
-            if( _aGrid[irow-1][icol].getValue() === 'apple' || _aGrid[irow-1][icol].getValue() === 'cherry' || _aGrid[irow-1][icol].getValue() === 'pear' || _aGrid[irow-1][icol].getValue() === 'grapes' || _aGrid[irow-1][icol].getValue() === 'orange' || _aGrid[irow-1][icol].getValue() === 'strawberry') {
+            if( _aGrid[irow-1][icol].getValue() === 'apple' || _aGrid[irow-1][icol].getValue() === 'cherry' || _aGrid[irow-1][icol].getValue() === 'pear' || _aGrid[irow-1][icol].getValue() === 'grapes' || _aGrid[irow-1][icol].getValue() === 'orange' || _aGrid[irow-1][icol].getValue() === 'strawberry' || _aGrid[irow-1][icol].getValue() === 'candycane' || _aGrid[irow-1][icol].getValue() === 'fries' || _aGrid[irow-1][icol].getValue() === 'lollipop' || _aGrid[irow-1][icol].getValue() === 'pizza' || _aGrid[irow-1][icol].getValue() === 'burger' || _aGrid[irow-1][icol].getValue() === 'medicine') {
                 _aGrid[irow][icol].changeCellState(_iPrecDir, _aSnake[_iHead].dir, 'mouth_opened');
             }
         }
         if( (icol-1) > 0 ){
-            if(_aGrid[irow][icol-1].getValue() === 'apple' || _aGrid[irow][icol-1].getValue() === 'cherry' || _aGrid[irow][icol-1].getValue() === 'pear' || _aGrid[irow][icol-1].getValue() === 'grapes' || _aGrid[irow][icol-1].getValue() === 'orange' || _aGrid[irow][icol-1].getValue() === 'strawberry') {
+            if(_aGrid[irow][icol-1].getValue() === 'apple' || _aGrid[irow][icol-1].getValue() === 'cherry' || _aGrid[irow][icol-1].getValue() === 'pear' || _aGrid[irow][icol-1].getValue() === 'grapes' || _aGrid[irow][icol-1].getValue() === 'orange' || _aGrid[irow][icol-1].getValue() === 'strawberry' || _aGrid[irow][icol-1].getValue() === 'candycane' || _aGrid[irow][icol-1].getValue() === 'fries' || _aGrid[irow][icol-1].getValue() === 'lollipop' || _aGrid[irow][icol-1].getValue() === 'pizza' || _aGrid[irow][icol-1].getValue() === 'burger' || _aGrid[irow][icol-1].getValue() === 'medicine') {
                 _aGrid[irow][icol].changeCellState(_iPrecDir, _aSnake[_iHead].dir, 'mouth_opened');
             }
         }
@@ -436,18 +466,50 @@ function CGame(mode, level,oData){
             TOMATO_ON = false;
         
         }
+        if (fruit === 'candycane'){
+            iTmpScore++;
+            _iScoreForFruit++;
+            CANDYCANE_ON = false;
+        
+        }
+        if (fruit === 'fries'){
+            iTmpScore++;
+            _iScoreForFruit++;
+            FRIES_ON = false;
+        }
+        if (fruit === 'lollipop'){
+            iTmpScore++;
+            _iScoreForFruit++;
+            LOLLIPOP_ON = false;
+        }
+        if (fruit === 'pizza'){
+            iTmpScore++;
+            _iScoreForFruit++;
+            PIZZA_ON = false;
+        }
+        if (fruit === 'burger'){
+            iTmpScore++;
+            _iScoreForFruit++;
+            BURGER_ON = false;
+        }
+        if (fruit === 'grapes'){
+            iTmpScore++;
+            _iScoreForFruit++;
+            TOMATO_ON = false;
+        }
+        else if ( fruit === 'medicine'){
+            if(mode === SURVIVAL_MODE){
+                this._deleteFruit();
+            }
+            iTmpScore+=Math.floor((_iTimerFruitElapse+100)/1000+(_aSnakeSpeed[_iLevel]/10));
+    }
         // if (fruit === 'strawberry'){
         //     iTmpScore++;
         //     _iScoreForFruit++;
         //     BANANA_ON = false;
         
         // }
-        // else if ( fruit === 'cherry'){
-        //         if(mode === SURVIVAL_MODE){
-        //             this._deleteFruit();
-        //         }
-        //         iTmpScore+=Math.floor((_iTimerFruitElapse+100)/1000+(_aSnakeSpeed[_iLevel]/10));
-        // }
+     
         // else if ( fruit === 'pear'){
         //         iTmpScore+=Math.floor((_iTimerFruitElapse+100)/1000+(_aSnakeSpeed[_iLevel]/10));
             
@@ -521,7 +583,7 @@ function CGame(mode, level,oData){
             _aGrid[_oApple.x][_oApple.y].changeCellState(24, 24, "apple");
             APPLE_ON = true;
         }
-        if(BANANA_ON === false){
+        else if(BANANA_ON === false){
             do{
                 _oCherry.x = Math.floor(Math.random()*NUM_ROWS);
                 _oCherry.y = Math.floor(Math.random()*NUM_COLS);
@@ -529,7 +591,7 @@ function CGame(mode, level,oData){
             _aGrid[_oCherry.x][_oCherry.y].changeCellState(24, 24, 'cherry');
             BANANA_ON = true;
         }
-        if(CARROTS_ON === false){
+        else if(CARROTS_ON === false){
             do{
                 _oPear.x = Math.floor(Math.random()*NUM_ROWS);
                 _oPear.y = Math.floor(Math.random()*NUM_COLS);
@@ -537,7 +599,7 @@ function CGame(mode, level,oData){
             _aGrid[_oPear.x][_oPear.y].changeCellState(24, 24, 'pear');
             CARROTS_ON = true;
         }
-        if(EGGPLANT_ON === false){
+        else if(EGGPLANT_ON === false){
             do{
                 _oOrange.x = Math.floor(Math.random()*NUM_ROWS);
                 _oOrange.y = Math.floor(Math.random()*NUM_COLS);
@@ -553,30 +615,70 @@ function CGame(mode, level,oData){
             _aGrid[_oGrapes.x][_oGrapes.y].changeCellState(24, 24, 'grapes');
             TOMATO_ON = true;
         }
+        if(CANDYCANE_ON === false){
+            do{
+                _oCandyCane.x = Math.floor(Math.random()*NUM_ROWS);
+                _oCandyCane.y = Math.floor(Math.random()*NUM_COLS);
+            }while(_aGrid[_oCandyCane.x][_oCandyCane.y].getValue() !== 'background');
+            _aGrid[_oCandyCane.x][_oCandyCane.y].changeCellState(24, 24, 'candycane');
+            CANDYCANE_ON = true;
+        }
+        if(FRIES_ON === false){
+            do{
+                _oFries.x = Math.floor(Math.random()*NUM_ROWS);
+                _oFries.y = Math.floor(Math.random()*NUM_COLS);
+            }while(_aGrid[_oFries.x][_oFries.y].getValue() !== 'background');
+            _aGrid[_oFries.x][_oFries.y].changeCellState(24, 24, 'fries');
+            FRIES_ON = true;
+        }
+        if(LOLLIPOP_ON === false){
+            do{
+                _oLollipop.x = Math.floor(Math.random()*NUM_ROWS);
+                _oLollipop.y = Math.floor(Math.random()*NUM_COLS);
+            }while(_aGrid[_oLollipop.x][_oLollipop.y].getValue() !== 'background');
+            _aGrid[_oLollipop.x][_oLollipop.y].changeCellState(24, 24, 'lollipop');
+            LOLLIPOP_ON = true;
+        }
+        if(PIZZA_ON=== false){
+            do{
+                _oPizza.x = Math.floor(Math.random()*NUM_ROWS);
+                _oPizza.y = Math.floor(Math.random()*NUM_COLS);
+            }while(_aGrid[_oPizza.x][_oPizza.y].getValue() !== 'background');
+            _aGrid[_oPizza.x][_oPizza.y].changeCellState(24, 24, 'pizza');
+            PIZZA_ON = true;
+        }
+        if(BURGER_ON=== false){
+            do{
+                _oBurger.x = Math.floor(Math.random()*NUM_ROWS);
+                _oBurger.y = Math.floor(Math.random()*NUM_COLS);
+            }while(_aGrid[_oBurger.x][_oBurger.y].getValue() !== 'background');
+            _aGrid[_oBurger.x][_oBurger.y].changeCellState(24, 24, 'burger');
+            BURGER_ON = true;
+        }
         if ( mode === SURVIVAL_MODE ){
-            // if(_iScoreForFruit === APPLE_TO_EAT_SURVIVAL && FRUIT_ON === false){
-            //     do{
-            //         _oCherry.x = Math.floor(Math.random()*NUM_ROWS);
-            //         _oCherry.y = Math.floor(Math.random()*NUM_COLS);
-            //     }while(_aGrid[_oCherry.x][_oCherry.y].getValue() !== 'background');
-            //     _aGrid[_oCherry.x][_oCherry.y].changeCellState(24, 24, 'cherry');
-            //     FRUIT_ON = true;
-            //     _iScoreForFruit = 0;
-            //     _iTimerFruitElapse = TIME_FRUIT;
-            //     _oInterface.setContainerVisible( true );
+            if(_iScoreForFruit === APPLE_TO_EAT_SURVIVAL && FRUIT_ON === false){
+                do{
+                    _oMedicine.x = Math.floor(Math.random()*NUM_ROWS);
+                    _oMedicine.y = Math.floor(Math.random()*NUM_COLS);
+                }while(_aGrid[_oMedicine.x][_oMedicine.y].getValue() !== 'background');
+                _aGrid[_oMedicine.x][_oMedicine.y].changeCellState(24, 24, 'medicine');
+                FRUIT_ON = true;
+                _iScoreForFruit = 0;
+                _iTimerFruitElapse = TIME_FRUIT;
+                _oInterface.setContainerVisible( true );
                 
-            //     playSound("appear_fruit",1,false);
+                playSound("appear_fruit",1,false);
                 
-            // }
+            }
         }
         else{
             if(_iScoreForFruit === APPLE_TO_EAT_ADVENTURE && FRUIT_ON === false){
                 
-                // do{
-                //     _oCherry.x = Math.floor(Math.random()*NUM_ROWS);
-                //     _oCherry.y = Math.floor(Math.random()*NUM_COLS);
-                // }while(_aGrid[_oCherry.x][_oCherry.y].getValue() !== 'background');
-                // _aGrid[_oCherry.x][_oCherry.y].changeCellState(24, 24, 'cherry');
+                do{
+                    _oCherry.x = Math.floor(Math.random()*NUM_ROWS);
+                    _oCherry.y = Math.floor(Math.random()*NUM_COLS);
+                }while(_aGrid[_oCherry.x][_oCherry.y].getValue() !== 'background');
+                _aGrid[_oCherry.x][_oCherry.y].changeCellState(24, 24, 'cherry');
                 do{
                     _oPear.x = Math.floor(Math.random()*NUM_ROWS);
                     _oPear.y = Math.floor(Math.random()*NUM_COLS);
@@ -617,21 +719,24 @@ function CGame(mode, level,oData){
 
             }
         }
-        if(_aGrid[_oCherry.x][_oCherry.y].getValue() === 'cherry'){
-            _aGrid[_oCherry.x][_oCherry.y].changeCellState(24, 24, 'background');
+        // if(_aGrid[_oCherry.x][_oCherry.y].getValue() === 'cherry'){
+        //     _aGrid[_oCherry.x][_oCherry.y].changeCellState(24, 24, 'background');
+        // }
+        if(_aGrid[_oMedicine.x][_oMedicine.y].getValue() === 'medicine'){
+            _aGrid[_oMedicine.x][_oMedicine.y].changeCellState(24, 24, 'background');
         }
-        if(_aGrid[_oPear.x][_oPear.y].getValue() === 'pear'){
-            _aGrid[_oPear.x][_oPear.y].changeCellState(24, 24, 'background');
-        }
-        if(_aGrid[_oOrange.x][_oOrange.y].getValue() === 'orange'){
-            _aGrid[_oOrange.x][_oOrange.y].changeCellState(24, 24, 'background');
-        }
-        if(_aGrid[_oGrapes.x][_oGrapes.y].getValue() === 'grapes'){
-            _aGrid[_oGrapes.x][_oGrapes.y].changeCellState(24, 24, 'background');
-        }
-        if(_aGrid[_oStrawberry.x][_oStrawberry.y].getValue() === 'strawberry'){
-            _aGrid[_oStrawberry.x][_oStrawberry.y].changeCellState(24, 24, 'background');
-        }
+        // if(_aGrid[_oPear.x][_oPear.y].getValue() === 'pear'){
+        //     _aGrid[_oPear.x][_oPear.y].changeCellState(24, 24, 'background');
+        // }
+        // if(_aGrid[_oOrange.x][_oOrange.y].getValue() === 'orange'){
+        //     _aGrid[_oOrange.x][_oOrange.y].changeCellState(24, 24, 'background');
+        // }
+        // if(_aGrid[_oGrapes.x][_oGrapes.y].getValue() === 'grapes'){
+        //     _aGrid[_oGrapes.x][_oGrapes.y].changeCellState(24, 24, 'background');
+        // }
+        // if(_aGrid[_oStrawberry.x][_oStrawberry.y].getValue() === 'strawberry'){
+        //     _aGrid[_oStrawberry.x][_oStrawberry.y].changeCellState(24, 24, 'background');
+        // }
         
         FRUIT_ON = false;
         _oInterface.refreshTime('00:00');

@@ -79,7 +79,7 @@ function CCreditsPanel(){
                     iX-iWidth/2, iY-iHeight/2, iWidth, iHeight, 
                     60, "center", "#600101", FONT, 1,
                     2, 2,
-                    "WWW.CODETHISLAB.COM",
+                    "www.medcon-me.com",
                     true, true, false,
                     false );
         oLinkStroke.setOutline(8);
@@ -87,7 +87,7 @@ function CCreditsPanel(){
                     iX-iWidth/2, iY-iHeight/2, iWidth, iHeight, 
                     60, "center", "#fff", FONT, 1,
                     2, 2,
-                    "WWW.CODETHISLAB.COM",
+                    "www.mecon-me.com",
                     true, true, false,
                     false );
     };
@@ -102,7 +102,7 @@ function CCreditsPanel(){
     };
     
     this._onLogoButRelease = function(){
-        window.open("http://www.codethislab.com/index.php?&l=en");
+        window.open("http://www.medcon-me.com");
     };
     
     this._init();

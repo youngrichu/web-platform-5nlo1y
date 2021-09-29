@@ -18,6 +18,7 @@ function CCell(iRow,iCol,iX,iY,oParentContainer,state){
         aSprites[0] = s_oSpriteLibrary.getSprite("environment_sprites");
         aSprites[1] = s_oSpriteLibrary.getSprite("snake_sprites");
         aSprites[2] = s_oSpriteLibrary.getSprite("fruit_sprites");
+        aSprites[3] = s_oSpriteLibrary.getSprite("unhealthy_food_sprites");
         
         var oData = {   
                         images: aSprites, 
@@ -25,7 +26,8 @@ function CCell(iRow,iCol,iX,iY,oParentContainer,state){
                         frames: {width: CELL_WIDTH, height: CELL_HEIGHT, regX: CELL_WIDTH/2, regY: CELL_HEIGHT/2}, 
                         animations: {   background:[0], wall1:[1], wall2:[2], wall3:[3], wall4:[4], wall5:[5], 
                                         head:[6], body:[7], tail:[8], curves:[9], eating:[10], mouth_opened:[11], 
-                                        apple:[12], cherry:[13], pear:[14], orange:[15], grapes:[16], strawberry:[17]
+                                        apple:[12], cherry:[13], pear:[14], orange:[15], grapes:[16], strawberry:[17], candycane:[18],
+                                        fries:[19], lollipop:[20], pizza:[21], burger:[22], medicine:[23]
                                     }
                     };
                     
@@ -111,6 +113,48 @@ function CCell(iRow,iCol,iX,iY,oParentContainer,state){
             _oCell.rotation = 0;
             _oCell.scaleY = 1;
             _oCell.scaleX = 1;
+        }
+        else if(szState === 'candycane'){  
+            _oCell.rotation = 0;
+            _oCell.gotoAndStop(szState);
+            _oCell.rotation = 0;
+            _oCell.scaleY = 1;
+            _oCell.scaleX = 1;
+        }
+        else if(szState === 'fries'){  
+            _oCell.rotation = 0;
+            _oCell.gotoAndStop(szState);
+            _oCell.rotation = 0;
+            _oCell.scaleY = 1;
+            _oCell.scaleX = 1;
+        }
+        else if(szState === 'lollipop'){  
+            _oCell.rotation = 0;
+            _oCell.gotoAndStop(szState);
+            _oCell.rotation = 0;
+            _oCell.scaleY = 1;
+            _oCell.scaleX = 1;
+        }
+        else if(szState === 'pizza'){  
+            _oCell.rotation = 0;
+            _oCell.gotoAndStop(szState);
+            _oCell.rotation = 0;
+            _oCell.scaleY = 1;
+            _oCell.scaleX = 1;
+        }
+        else if(szState === 'burger'){  
+            _oCell.rotation = 0;
+            _oCell.gotoAndStop(szState);
+            _oCell.rotation = 0;
+            _oCell.scaleY = 1;
+            _oCell.scaleX = 1;
+        }
+        else if(szState === 'medicine'){  
+            _oCell.rotation = 0;
+            _oCell.gotoAndStop(szState);
+            _oCell.rotation = 0;
+            _oCell.scaleY = 1;
+            _oCell.scaleX = 1;
         }else if(szState === 'background'){                         
             _oCell.rotation = 0;
             _oCell.gotoAndStop(szState);
@@ -118,6 +162,7 @@ function CCell(iRow,iCol,iX,iY,oParentContainer,state){
             _oCell.scaleY = 1;
             _oCell.scaleX = 1;
         }
+        
         
         _szValue=szState;
         if(CGame._bChangeDir){

@@ -130,6 +130,7 @@ function CMain(oData){
         s_oSpriteLibrary.addSprite("environment_sprites","./sprites/environment_sprites.png");
         s_oSpriteLibrary.addSprite("snake_sprites","./sprites/snake_sprites.png");
         s_oSpriteLibrary.addSprite("fruit_sprites","./sprites/fruit_sprites.png");
+        s_oSpriteLibrary.addSprite("unhealthy_food_sprites","./sprites/unhealthy_food_sprites.png");
         
         s_oSpriteLibrary.addSprite("left","./sprites/left.png");
         s_oSpriteLibrary.addSprite("up","./sprites/up.png");
@@ -146,6 +147,11 @@ function CMain(oData){
         s_oSpriteLibrary.addSprite("grapes","./sprites/grapes.png");
         s_oSpriteLibrary.addSprite("orange","./sprites/orange.png");
         s_oSpriteLibrary.addSprite("strawberry","./sprites/strawberry.png");
+        s_oSpriteLibrary.addSprite("burger","./sprites/burger.png");
+        s_oSpriteLibrary.addSprite("candycane","./sprites/candy-cane.png");
+        s_oSpriteLibrary.addSprite("fries","./sprites/fries.png");
+        s_oSpriteLibrary.addSprite("lollipop","./sprites/lollipop.png");
+        s_oSpriteLibrary.addSprite("medicine","./sprites/medicine.png");
         s_oSpriteLibrary.addSprite("logo_credits","./sprites/logo_credits.png");
         s_oSpriteLibrary.addSprite("but_credits","./sprites/but_credits.png");
         s_oSpriteLibrary.addSprite("but_fullscreen","./sprites/but_fullscreen.png");

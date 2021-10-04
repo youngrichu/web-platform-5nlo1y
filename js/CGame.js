@@ -73,18 +73,18 @@ function CGame(mode, level,oData){
 		
 	this._createGrid();        
         // INIT SNAKE IS CALLED IN "_initLevel"        
-        APPLE_ON = false;
-        BANANA_ON = false;
-        EGGPLANT_ON = false;
-        FISH_ON = false;
-        CARROTS_ON = false;
-        TOMATO_ON = false;
-        CANDYCANE_ON = false;
-        FRIES_ON = false;
-        LOLLIPOP_ON = false;
-        PIZZA_ON = false;
-        BURGER_ON = false;
-        MEDICINE_ON = false;
+        // APPLE_ON = false;
+        // BANANA_ON = false;
+        // EGGPLANT_ON = false;
+        // FISH_ON = false;
+        // CARROTS_ON = false;
+        // TOMATO_ON = false;
+        // CANDYCANE_ON = false;
+        // FRIES_ON = false;
+        // LOLLIPOP_ON = false;
+        // PIZZA_ON = false;
+        // BURGER_ON = false;
+        // MEDICINE_ON = false;
 		
         if(!s_bMobile){
             document.onkeydown = onKeyDown; 
@@ -590,7 +590,7 @@ function CGame(mode, level,oData){
             _aGrid[_oApple.x][_oApple.y].changeCellState(24, 24, "apple");
             APPLE_ON = true;
         }
-        else if(BANANA_ON === false){
+        if(BANANA_ON === false){
             do{
                 _oCherry.x = Math.floor(Math.random()*NUM_ROWS);
                 _oCherry.y = Math.floor(Math.random()*NUM_COLS);
@@ -598,7 +598,7 @@ function CGame(mode, level,oData){
             _aGrid[_oCherry.x][_oCherry.y].changeCellState(24, 24, 'cherry');
             BANANA_ON = true;
         }
-        else if(EGGPLANT_ON === false){
+     if(EGGPLANT_ON === false){
             do{
                 _oPear.x = Math.floor(Math.random()*NUM_ROWS);
                 _oPear.y = Math.floor(Math.random()*NUM_COLS);
@@ -606,7 +606,7 @@ function CGame(mode, level,oData){
             _aGrid[_oPear.x][_oPear.y].changeCellState(24, 24, 'pear');
             EGGPLANT_ON  = true;
         }
-        else if(FISH_ON === false){
+       if(FISH_ON === false){
             do{
                 _oOrange.x = Math.floor(Math.random()*NUM_ROWS);
                 _oOrange.y = Math.floor(Math.random()*NUM_COLS);

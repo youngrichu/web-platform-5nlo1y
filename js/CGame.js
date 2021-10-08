@@ -492,95 +492,14 @@ function CGame(mode, level, oData) {
             "tail"
         ); //PRINTING TAIL
 
-        //IF I'VE HITTED SOMETHING....
-        if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "apple"
-        ) {
-            //HITTED AN APPLE
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "cherry"
-        ) {
-            //HITTED A CHERRY
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        }
-         else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "pear"
-        ) {
-            //HITTED PEAR
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "grapes"
-        ) {
-            //HITTED GRAPES
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "orange"
-        ) {
-            //HITTED ORANGE
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "strawberry"
-        ) {
-            //HITTED STRAWBERRY
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "candycane"
-        ) {
-            //HITTED CANDYCANE
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "fries"
-        ) {
-            //HITTED FRIES
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "lollipop"
-        ) {
-            //HITTED LOLLIPOP
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "pizza"
-        ) {
-            //HITTED PIZZA
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "burger"
-        ) {
-            //HITTED BURGER
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "medicine"
-        ) {
-            //HITTED MEDICIEN
-            this.fruitEaten(
-                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
-            );
-        } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() !==
-            "background"
+        var currentCellValue = _aGrid[(_aSnake[_iHead].row)][_aSnake[_iHead].col].getValue();
+
+        if (["apple", "cherry", "pear", "grapes", "orange", "strawberry",
+            "candycane", "fries", "lollipop", "pizza", "burger", "medicine"]
+            .includes(currentCellValue))
+            this.fruitEaten(currentCellValue);
+        else if (
+            currentCellValue !== "background"
         ) {
             //HITTED MYSELF OR A WALL
             _bUpdate = false;
@@ -588,7 +507,6 @@ function CGame(mode, level, oData) {
             this.gameOver();
             return;
         }
-
         //PRINT THE SNAKE ON THE SCREEN
         _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].changeCellState(
             _iPrecDir,
@@ -699,6 +617,34 @@ function CGame(mode, level, oData) {
         }
     };
 
+    this.medicineEaten = function () {
+        // CHANGES CURRENT TAIL STATE TO BACKGROUND AND REMOVE IT FROM BODY, SETS NEW TAIL. 
+        // CHECKS IF BODY BIGGER THAN ONE OTHERWISE IT'S TOO SHORT AND DOES NOTHING.
+        if (_aSnake.length < MEDICINE_EFFECT) {
+            // console.log("TOO SHORT, DOES NOTHING", _aSnake.length)
+            return; // TOO SHORT, DOES NOTHING
+        }
+
+        var currentTail = null;
+        // REMOVED NUMBER OF TAILS BASED ON SETTINGS VARIABLE.
+        for (let i = 0; i < MEDICINE_EFFECT; i++) {
+            currentTail = _aSnake.shift();
+            currentTail.state = 'background';
+            _aGrid[currentTail.row][currentTail.col].changeCellState(_iPrecDir, currentTail.dir, currentTail.state);
+        }
+
+
+        _aTail = [currentTail];
+        var newTail = _aSnake[0];
+        newTail.state = 'tail';
+        _aGrid[newTail.row][newTail.col].changeCellState(_iPrecDir, newTail.dir, newTail.state);
+
+        _iHead = _aSnake.length - 1;
+
+        this._deleteFruit();
+
+    }
+
     this.fruitEaten = function (fruit) {
         var iTmpScore = 0;
         if (fruit === "apple") {
@@ -760,27 +706,10 @@ function CGame(mode, level, oData) {
             iTmpScore++;
             _iScoreForFruit++;
             CARROTS_ON = false;
-        } else if (fruit === "medicine") {
+        }
+        if (fruit === "medicine") {
             
-                this._deleteFruit();
-               
-                console.log(_aSnake)
-                var head_m = _aSnake.splice(-1);
-                var tail_m = _aSnake.splice(1);
-                var body_m = _aSnake.splice(2)
-                // console.log(head_m);
-                // console.log(tail_m);
-                // console.log(body_m);
-            
-                
-                _aSnake=tail_m.concat(body_m,head_m);
-                console.log(_aSnake);
-                // _aSnake = _aSnake.slice(1, _aSnake.length - 2); 
-                // _aSnake_hold = _aSnake.filter(section => section.state != 'body');
-                // _aSnake = _aSnake_hold.length-1;
-              
-                
-            
+            this.medicineEaten();
             
             iTmpScore += Math.floor(
                 (_iTimerFruitElapse + 100) / 1000 + _aSnakeSpeed[_iLevel] / 10

@@ -456,12 +456,7 @@ function CGame(mode, level, oData) {
         } else if (_iWasEating - 1 === 0) {
             //AND IF IT IS
             _aSnake[1].state = "body"; //I'LL SAY THAT IS NOW IT'S BODY
-             _aSnake=_.without(_aSnake, _.findWhere(_aSnake, {
-                state: 'body'
-                }));
-            _aSnake = _aTail.concat(_aSnake); //AND I'LL INCREASE THE NUMBER OF ELEMENTS OF SNAKE
-            console.log(_aSnake);
-            
+            _aSnake = _aTail.concat(_aSnake); //AND I'LL INCREASE THE NUMBER OF ELEMENTS OF SNAKE   
             _iHead = _aSnake.length - 1;
             _iWasEating = 600;
             _aGrid[_aTail[0].row][_aTail[0].col].changeCellState(
@@ -476,11 +471,6 @@ function CGame(mode, level, oData) {
             //IF LAST ONE IS IN STATE "EATING"
             _aSnake[1].state = "body"; //I'LL CHANGE IT IN BODY
             _aSnake = _aTail.concat(_aSnake); //THEN I'LL INCREASE THE NUMBER OF ELEMENTS OF SNAKE
-            // console.log(_aSnake);
-            // _aSnake=_.without(_aSnake, _.findWhere(_aSnake, {
-            //     state: 'body'
-            //     }));
-            //     console.log(_aSnake);
             _iHead = _aSnake.length - 1;
             _aGrid[_aTail[0].row][_aTail[0].col].changeCellState(
                 _iPrecDir,
@@ -517,7 +507,8 @@ function CGame(mode, level, oData) {
             this.fruitEaten(
                 _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
             );
-        } else if (
+        }
+         else if (
             _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "pear"
         ) {
             //HITTED PEAR
@@ -539,16 +530,14 @@ function CGame(mode, level, oData) {
                 _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
             );
         } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() ===
-            "strawberry"
+            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "strawberry"
         ) {
             //HITTED STRAWBERRY
             this.fruitEaten(
                 _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
             );
         } else if (
-            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() ===
-            "candycane"
+            _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "candycane"
         ) {
             //HITTED CANDYCANE
             this.fruitEaten(
@@ -565,6 +554,9 @@ function CGame(mode, level, oData) {
             _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "lollipop"
         ) {
             //HITTED LOLLIPOP
+            this.fruitEaten(
+                _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue()
+            );
         } else if (
             _aGrid[_aSnake[_iHead].row][_aSnake[_iHead].col].getValue() === "pizza"
         ) {
@@ -769,22 +761,27 @@ function CGame(mode, level, oData) {
             _iScoreForFruit++;
             CARROTS_ON = false;
         } else if (fruit === "medicine") {
-            if (mode === SURVIVAL_MODE) {
+            
                 this._deleteFruit();
-                // _aSnake.concat();
-                // var head_m = _aSnake.slice(-1);
-                // var tail_m = _aSnake.slice(1);
-                // var body_m = _aSnake.slice(-1,1)
+               
+                console.log(_aSnake)
+                var head_m = _aSnake.splice(-1);
+                var tail_m = _aSnake.splice(1);
+                var body_m = _aSnake.splice(2)
                 // console.log(head_m);
                 // console.log(tail_m);
                 // console.log(body_m);
-
-                // console.log(_aSnake);
             
                 
-                // console.log(_aSnake=tail_m.concat(head_m,body_m));
-                // _aSnake.pop();
-            }
+                _aSnake=tail_m.concat(body_m,head_m);
+                console.log(_aSnake);
+                // _aSnake = _aSnake.slice(1, _aSnake.length - 2); 
+                // _aSnake_hold = _aSnake.filter(section => section.state != 'body');
+                // _aSnake = _aSnake_hold.length-1;
+              
+                
+            
+            
             iTmpScore += Math.floor(
                 (_iTimerFruitElapse + 100) / 1000 + _aSnakeSpeed[_iLevel] / 10
             );
